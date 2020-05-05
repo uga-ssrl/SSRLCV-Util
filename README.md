@@ -99,7 +99,7 @@ Additions to give more arguments are parameters are welcome
 
 ## `track_orbit_camera_gen.py` -- generates test positions, orentations, and slews of cameras
 
-This program generates example camera positions and orientations which can be used to test 3D reconstructions, and to make camera paramters for blenderGIS genereated test imagery.
+Perhaps the most useful util program for testing. This program generates example camera positions and orientations which can be used to test 3D reconstructions, and to make camera paramters for blenderGIS genereated test imagery.
 
 This program also outputs slew rates for the given inputs. These slew rates are given from image to image and not as a whole.
 
@@ -113,7 +113,17 @@ Where the arguments are:
 
 * `altitidue` -- the altitidue of the circular orbit in km
 * `stepAngle` -- the off angle from the point track normal
-* `numSteps ` -- the numbers of angle steps to take 
+* `numSteps ` -- the numbers of angle steps to take
+
+An example is to take 3 images at 400km with a 15 degree off angle for each is:
+
+```
+python3 track_orbit_camera_gen.py 400 15 3
+```
+
+### Use for Pointing Budget
+
+
 
 # Data Visualization
 
