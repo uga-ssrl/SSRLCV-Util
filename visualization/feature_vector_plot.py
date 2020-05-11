@@ -11,17 +11,25 @@ print '=  Vector Shower        ='
 print '========================='
 print '\n^C to quit...'
 
+# get the user inputs
+if (len(sys.argv) < 2):
+    print("NOT ENOUGH ARGUMENTS")
+    print("USAGE:")
+    print("\npython3 bundle_adjustment_tests_viewer.py file/path/to/image \n")
+    print("\t <> imagePath  -- a directory path including the image ")
+    exit(-1)
 
+img  = sys.argv[1]
 
 def get_i(rgb):
     return (rgb[0]/4 + rgb[1]/2 + rgb[0]/4)
 
 
-img = "everest254/ev_18x18.png"
+# img = "everest254/ev_18x18.png"
 #img = "everest254/simple_gradient.png"
 #img = "everest254/simple_gradient2.png"
 gradients = []
-guy = Image.open(img) 
+guy = Image.open(img)
 pix = guy.load()
 
 for y in range (1,17):
