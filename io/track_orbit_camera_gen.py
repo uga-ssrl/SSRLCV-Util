@@ -1,6 +1,8 @@
 import sys
 from math import sin, cos, tan, pi, radians, atan, asin, sqrt
 from numpy.polynomial import Polynomial as P
+import numpy as np
+from convert import convert
 
 #
 # Generates accurate orbital coordinates for cameras given angles
@@ -103,11 +105,16 @@ for step in range(0,int((steps+1)/2)):
         theta = radians(b_theta - 90.0)
         img_num += 2
     else:
-        param_str = str(img_num) + '.png,0.0,0.0,' + str(alt*1000) + ',0.0,0.0,0.0,'
+        param_str = str(img_num) + '.png,0.0,0.0,' + str(alt) + ',0.0,0.0,0.0,'
         params.append(param_str)
         # print('1.png,0.0,0.0,' + str(alt*1000) + ',0.0,0.0,0.0,')
-        blender_values.append('0.0,0.0,0.0, y rotate: 0.0')
+        blender_values.append('0.0,0.0,' + str(alt*1000) + ', y rotate: 0.0')
         img_num += 1
+
+params_arr = np.char.split(params, sep=",")
+convert(params_arr, 27.9881, 86.9250, alt * 1000) # mock latitude/longitude for orbit above Everest (doesn't matter if it's a different location)
+for (ind, _) in enumerate(params):
+    params[ind] = ",".join(str(x) for x in params_arr[ind])
 
 print('\t ---- Copy to params.csv ----')
 if (not twoview):
